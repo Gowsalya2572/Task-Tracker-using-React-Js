@@ -1,0 +1,77 @@
+import React, { useState } from 'react'
+
+const Task = () => {
+  const [task, setTask] = useState("");
+  const [tasks, setTasks] = useState([]);
+
+  const addTask = () => {
+    if (!task.trim()) return;
+    setTasks([
+      ...tasks,
+      { id: Date.now(), text: task, completed: false },
+    ]);
+    setTask("");
+  };
+
+  const toggleTask = (id) => {
+    setTasks(
+      tasks.map((t) =>
+        t.id === id ? { ...t, completed: !t.completed } : t
+      )
+    );
+  };
+
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((t) => t.id !== id));
+  };
+
+  return (
+    <div className="container">
+      <h3 className='title'>My Tasks</h3>
+      <div className="add-card">
+        <input
+          type="text"
+          placeholder="Enter your task"
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
+        />
+        <button onClick={addTask}>Add Task</button>
+      </div>
+
+
+      {tasks.length === 0 ? (
+        <p style={{ textAlign: "center", fontSize: '18px', marginTop: "20px", color: "black" }}>
+          No tasks available
+        </p>
+      ) : <div className="task-grid">
+        {tasks.map((t) => (
+          <div
+            key={t.id}
+            className={`task-card ${t.completed ? "completed" : ""}`}
+          >
+            <h3>{t.text}</h3>
+            <p>Status: {t.completed ? "Completed" : "Pending"}</p>
+
+            <div className="actions">
+              <button onClick={() => toggleTask(t.id)}>
+                {t.completed ? "Undo" : "Complete"}
+              </button>
+              <span className="delete" onClick={() => deleteTask(t.id)}>
+                🗑️
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+      }
+    </div>
+  );
+}
+
+export default Task
+
+
+
+
+
+
