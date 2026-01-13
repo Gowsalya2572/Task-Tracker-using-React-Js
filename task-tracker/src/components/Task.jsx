@@ -1,14 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Task = () => {
   const [task, setTask] = useState("");
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = () => {
     if (!task.trim()) return;
     setTasks([
       ...tasks,
-      { id: Date.now(), text: task, completed: false },
+      { id: Date.now(), text: task, completed: false,  createdAt: Date.now(), },
     ]);
     setTask("");
   };
@@ -50,6 +57,7 @@ const Task = () => {
             className={`task-card ${t.completed ? "completed" : ""}`}
           >
             <h3>{t.text}</h3>
+             <p className="task-date">{new Date(t.createdAt).toLocaleString()}</p>
             <p>Status: {t.completed ? <span style={{color:'green'}}>Completed</span> : <span style={{color:'red'}}>Pending</span>}</p>
 
             <div className="actions">

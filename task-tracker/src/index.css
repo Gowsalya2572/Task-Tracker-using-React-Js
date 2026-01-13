@@ -111,6 +111,12 @@ main {
   border-radius: 8px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
   font-family: sans-serif;
+   transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.task-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
 }
 
 .task-card.completed {
@@ -147,6 +153,12 @@ main {
 .delete {
   cursor: pointer;
   font-size: 18px;
+}
+
+.task-date {
+  font-size: 12px;
+  color: #777;
+  margin: 5px 0;
 }
 
 
