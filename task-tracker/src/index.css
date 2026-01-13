@@ -80,31 +80,6 @@ main {
   gap: 20px;
 }
 
-@media (max-width: 640px) {
-  .task-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (min-width: 641px) and (max-width: 1024px) {
-  .task-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1025px) {
-  .task-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .add-card {
-    flex-direction: column;
-  }
-}
-
-
 .task-card {
   background: white;
   padding: 16px 18px;
@@ -170,5 +145,28 @@ footer {
   justify-content: center;
   align-items: center;
   box-shadow: 5px 5px 10px #eae9e9;
+}
 
+@media (max-width: 640px) {
+  .task-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .task-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1025px) {
+  .task-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .add-card {
+    flex-direction: column;
+  }
 }
