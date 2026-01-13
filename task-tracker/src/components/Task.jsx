@@ -40,7 +40,7 @@ const Task = () => {
 
 
       {tasks.length === 0 ? (
-        <p style={{ textAlign: "center", fontSize: '18px', marginTop: "20px", color: "black" }}>
+        <p style={{ textAlign: "center", fontSize: '18px', marginTop: "50px", color: "black" }}>
           No tasks available
         </p>
       ) : <div className="task-grid">
@@ -50,7 +50,7 @@ const Task = () => {
             className={`task-card ${t.completed ? "completed" : ""}`}
           >
             <h3>{t.text}</h3>
-            <p>Status: {t.completed ? "Completed" : "Pending"}</p>
+            <p>Status: {t.completed ? <span style={{color:'green'}}>Completed</span> : <span style={{color:'red'}}>Pending</span>}</p>
 
             <div className="actions">
               <button onClick={() => toggleTask(t.id)}>
